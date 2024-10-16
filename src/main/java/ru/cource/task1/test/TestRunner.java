@@ -17,6 +17,16 @@ public class TestRunner {
         return result;
     }
 
+    private static Object convert(String from){
+        if (from.matches("-?\\d+")) {
+            return Integer.parseInt(from);
+        } else if (from.matches("-?\\d+(\\.\\d+)?")) {
+            return Double.parseDouble(from);
+        } else if (from.matches("true|false|0|1")) {
+            return Boolean.parseBoolean(from);
+        } else return from;
+    }
+
     private static void testCheck(Class c, List<TestResult> result){
         Method [] methods = c.getMethods();
 
@@ -77,8 +87,9 @@ public class TestRunner {
                 .forEach(method -> {
                     try {
                         String [] tmpArgs = method.getAnnotation(CsvSource.class).value().split(",");
-                        // TODO: найти и заменить на нормальное пробразование типов
-                        method.invoke(object, Integer.parseInt(tmpArgs[0]), tmpArgs[1],Integer.parseInt(tmpArgs[2]), Boolean.parseBoolean(tmpArgs[3]));
+                        Object [] args = Arrays.stream(tmpArgs).map(TestRunner::convert).toArray();
+
+                        method.invoke(object, args);
                         result.add(new TestResult(Result.PASSED, "CsvSource", method));
                     } catch (IllegalAccessException | InvocationTargetException e) {
                         result.add(new TestResult(Result.ERROR, "CsvSource", method, new AssertionFailedError(null, e)));
