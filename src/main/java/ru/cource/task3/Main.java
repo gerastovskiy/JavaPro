@@ -1,8 +1,6 @@
 package ru.cource.task3;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /*
 Попробуйте реализовать собственный пул потоков. В качестве аргументов конструктора пулу передается его емкость (количество рабочих потоков).
@@ -13,59 +11,42 @@ import java.util.concurrent.TimeUnit;
 Дополнительно можно добавить метод awaitTermination() без таймаута, работающий аналогично стандартным пулам потоков.
  */
 public class Main {
+    private static AtomicInteger taskCounter = new AtomicInteger(1);
+
+    public static Runnable newRunnable(long delay){
+        Runnable r = () ->
+        {
+            var taskCount = taskCounter.getAndIncrement();
+
+            System.out.println(String.format("Задание %s поставлено в очередь", taskCount));
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(String.format("Задание %s завершено", taskCount));
+        };
+
+        return r;
+    }
+
     public static void main(String[] args) throws InterruptedException {
-        var pool1 = new ThreadPoolExecutor(5, 10, 1L, TimeUnit.HOURS, new ArrayBlockingQueue<>(10));
-//        var pool2 = Executors.newFixedThreadPool(2);
-//
-//        pool1.shutdown();
-//        pool2.shutdown();
+        var pool = new MyPoolExecutor(3);
 
-        var pool = new MyPoolExecutor(1);
+        pool.execute(newRunnable(1000L));
+        pool.execute(newRunnable(6000L));
+        pool.execute(newRunnable(3000L));
+        pool.execute(newRunnable(5000L));
+        pool.execute(newRunnable(1000L));
+        pool.execute(newRunnable(500L));
+        pool.execute(newRunnable(100L));
 
-        pool.execute(() -> {
-            System.out.println("Задание 1 поставлено в очередь");
-            try {
-                Thread.sleep(1000L);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println("Задание 1 завершено");
-        });
-
-        pool.execute(() -> {
-            System.out.println("Задание 2 поставлено в очередь");
-            try {
-                Thread.sleep(2000L);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println("Задание 2 завершено");
-        });
-
-        pool.execute(() -> {
-            System.out.println("Задание 3 поставлено в очередь");
-            try {
-                Thread.sleep(3000L);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println("Задание 3 завершено");
-        });
-
-        pool.execute(() -> {
-            System.out.println("Задание 4 поставлено в очередь");
-            System.out.println("Задание 4 завершено");
-        });
-
-        Thread.sleep(2000L);
+        //Thread.sleep(2000L);
         pool.shutdown();
+        //pool.shutdownNow();
 
-        pool.execute(() -> {
-            System.out.println("Задание X поставлено в очередь");
-            System.out.println("Задание X завершено");
-        });
+        pool.execute(newRunnable(1));
 
-        System.out.println("END");
-
+        System.out.println("This is the END");
     }
 }

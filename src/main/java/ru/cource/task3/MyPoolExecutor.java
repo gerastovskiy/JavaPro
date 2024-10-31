@@ -16,8 +16,8 @@ public class MyPoolExecutor extends AbstractExecutorService {
 
         for (int i = 0; i < corePoolSize; i++) {
             threads.add(new MyPoolThread(tasks));
-            threads.stream().forEach(Thread::start);
         }
+        threads.stream().forEach(Thread::start);
     }
 
     @Override
@@ -26,15 +26,20 @@ public class MyPoolExecutor extends AbstractExecutorService {
 
         threads.stream().forEach(myPoolThread -> {
             try {
+                System.out.println(myPoolThread + " shutdown 1");
                 myPoolThread.join();
+                System.out.println(myPoolThread + " shutdown 2");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         });
+
     }
 
     @Override
     public List<Runnable> shutdownNow() {
+        state = MyPoolState.SHUTDOWN;
+
         threads.stream().forEach(Thread::interrupt);
         return tasks;
     }

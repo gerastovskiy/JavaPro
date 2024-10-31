@@ -22,7 +22,7 @@ public class MyPoolThread extends Thread{
         while (true) {
             synchronized (tasks) {
                 if (!tasks.isEmpty()) {
-                    task = Optional.of(tasks.removeLast());
+                    task = Optional.of(tasks.removeFirst());
                 } else {
                     task = Optional.empty();
                 }
