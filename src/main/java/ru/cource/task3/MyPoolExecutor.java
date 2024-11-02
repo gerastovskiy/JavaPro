@@ -22,24 +22,14 @@ public class MyPoolExecutor extends AbstractExecutorService {
 
     @Override
     public void shutdown() {
-        state = MyPoolState.TERMINATED;
-
-        threads.stream().forEach(myPoolThread -> {
-            try {
-                System.out.println(myPoolThread + " shutdown 1");
-                myPoolThread.join();
-                System.out.println(myPoolThread + " shutdown 2");
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
+        state = MyPoolState.SHUTDOWN;
+        threads.stream().forEach(MyPoolThread::setShutdown);
     }
 
     @Override
     public List<Runnable> shutdownNow() {
-        state = MyPoolState.SHUTDOWN;
-
+        state = MyPoolState.TERMINATED;
+        threads.stream().forEach(MyPoolThread::setShutdown);
         threads.stream().forEach(Thread::interrupt);
         return tasks;
     }

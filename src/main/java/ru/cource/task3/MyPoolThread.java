@@ -5,6 +5,7 @@ import java.util.Optional;
 
 public class MyPoolThread extends Thread{
     private final List<Runnable> tasks;
+    private volatile boolean shutdown = false;
 
     public MyPoolThread(List<Runnable> tasks) {
         this.tasks = tasks;
@@ -15,11 +16,14 @@ public class MyPoolThread extends Thread{
             tasks.add(task);
         }
     }
+    public void setShutdown(){
+        shutdown = true;
+    }
 
     @Override
     public void run() {
         Optional<Runnable> task = Optional.empty();
-        while (true) {
+        while (!shutdown) {
             synchronized (tasks) {
                 if (!tasks.isEmpty()) {
                     task = Optional.of(tasks.removeFirst());

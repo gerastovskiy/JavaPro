@@ -17,16 +17,14 @@ public class Main {
         Runnable r = () ->
         {
             var taskCount = taskCounter.getAndIncrement();
-
             System.out.println(String.format("Задание %s поставлено в очередь", taskCount));
             try {
                 Thread.sleep(delay);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                System.out.println(String.format("Задание %s прервано", taskCount));
             }
             System.out.println(String.format("Задание %s завершено", taskCount));
         };
-
         return r;
     }
 
@@ -41,12 +39,10 @@ public class Main {
         pool.execute(newRunnable(500L));
         pool.execute(newRunnable(100L));
 
-        //Thread.sleep(2000L);
+        Thread.sleep(2000L);
         pool.shutdown();
         //pool.shutdownNow();
 
         pool.execute(newRunnable(1));
-
-        System.out.println("This is the END");
     }
 }
