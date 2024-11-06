@@ -1,5 +1,7 @@
 package ru.cource.task3;
 
+import lombok.SneakyThrows;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -11,11 +13,6 @@ public class MyPoolThread extends Thread{
         this.tasks = tasks;
     }
 
-    public void addTask(Runnable task) {
-        synchronized (tasks) {
-            tasks.add(task);
-        }
-    }
     public void setShutdown(){
         shutdown = true;
     }
@@ -29,6 +26,11 @@ public class MyPoolThread extends Thread{
                     task = Optional.of(tasks.removeFirst());
                 } else {
                     task = Optional.empty();
+                    try {
+                        tasks.wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
             task.ifPresent(Runnable::run);

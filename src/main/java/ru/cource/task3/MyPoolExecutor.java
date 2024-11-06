@@ -54,6 +54,7 @@ public class MyPoolExecutor extends AbstractExecutorService {
         if (state == MyPoolState.RUNNING) {
             synchronized (tasks){
                 tasks.add(command);
+                tasks.notifyAll();
             }
         } else {
             throw new IllegalStateException(String.format("Состояние пула %s не допускает добавление новых задач.", state));
