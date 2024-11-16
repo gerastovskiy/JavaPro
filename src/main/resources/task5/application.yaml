@@ -1,0 +1,4 @@
+username: user
+password: pass
+url: jdbc:h2:./src/main/resources/task5/h2
+driver-class-name: org.h2.Driver
