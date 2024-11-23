@@ -1,5 +1,6 @@
 package ru.cource.task5.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Schema(description = "Продукты")
 public class Product {
     @NonNull
     private Long id;

@@ -1,7 +1,7 @@
 package ru.cource.task5.repository;
 
-import ru.cource.task5.datasource.HikariDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.stereotype.Component;
 import ru.cource.task5.model.User;
 import java.sql.SQLException;
@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-@Component
+@Component @DependsOn("dataSource")
 public class UserRepository {
     private final HikariDataSource dataSource;
 
-    @Autowired
     public UserRepository(HikariDataSource dataSource) {
         this.dataSource = dataSource;
     }

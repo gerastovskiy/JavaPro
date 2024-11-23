@@ -1,8 +1,8 @@
 package ru.cource.task5.repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
-import ru.cource.task5.datasource.HikariDataSource;
+import com.zaxxer.hikari.HikariDataSource;
 import ru.cource.task5.model.Product;
 import ru.cource.task5.model.ProductType;
 import java.sql.SQLException;
@@ -10,20 +10,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-@Component
+@Component @DependsOn("dataSource")
 public class ProductRepository {
     private final HikariDataSource dataSource;
 
-    @Autowired
-    public ProductRepository(HikariDataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+    public ProductRepository(HikariDataSource dataSource) { this.dataSource = dataSource; }
 
     public void createProduct(Product product) throws SQLException {
         var cn = dataSource.getConnection();
         var st = cn.createStatement();
         var rs = st.executeUpdate(String.format("insert into product(account_number, account_balance, product_type, user_id) values('%s', (%s), '%s', %d)"
                 ,product.getAccountNumber(), product.getAccountBalance().toString(), product.getProductType(), product.getUserId()));
+        cn.commit();
+    }
+
+    public void updateProduct(Product product) throws SQLException {
+        var cn = dataSource.getConnection();
+        var st = cn.createStatement();
+        var rs = st.executeUpdate(String.format("update product set account_number = '%s', account_balance = (%s), product_type = '%s', user_id = %d where id = %d"
+                ,product.getAccountNumber(), product.getAccountBalance().toString(), product.getProductType(), product.getUserId(), product.getId()));
         cn.commit();
     }
 

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.cource.task5.model.Product;
 import ru.cource.task5.repository.ProductRepository;
 import ru.cource.task5.service.ProductService;
+
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -30,6 +32,18 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteAllProducts() throws SQLException {
         productRepository.deleteAllProducts();
+    }
+
+    @Override
+    public void debitProduct(Product product, BigDecimal amount) throws SQLException {
+        product.setAccountBalance(product.getAccountBalance().subtract(amount));
+        productRepository.updateProduct(product);
+    }
+
+    @Override
+    public void creditProduct(Product product, BigDecimal amount) throws SQLException {
+        product.setAccountBalance(product.getAccountBalance().add(amount));
+        productRepository.updateProduct(product);
     }
 
     @Override

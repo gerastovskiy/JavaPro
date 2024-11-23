@@ -1,18 +1,19 @@
 package ru.cource.task5.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.cource.task5.model.Product;
 import ru.cource.task5.service.ProductService;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 
 @RestController
+@Hidden
 public class ProductController {
-    private ProductService productService;
+    private final ProductService productService;
 
-    @Autowired
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
@@ -41,6 +42,20 @@ public class ProductController {
     public HttpStatus createProduct(@RequestBody Product product) throws SQLException {
         productService.createProduct(product);
         return HttpStatus.CREATED;
+    }
+
+    @PutMapping(value = "/product/debit{id}{amount}")
+    public Product debitProduct(@RequestParam("id") Long id, @RequestParam("amount") BigDecimal amount) throws SQLException {
+        var product = productService.getProduct(id);
+        productService.debitProduct(product, amount);
+        return product;
+    }
+
+    @PutMapping(value = "/product/credit{id}{amount}")
+    public Product creditProduct(@RequestParam("id") Long id, @RequestParam("amount") BigDecimal amount) throws SQLException {
+        var product = productService.getProduct(id);
+        productService.creditProduct(product, amount);
+        return product;
     }
 
     @DeleteMapping(value = "/product/deleteByAccount/{accountNumber}")

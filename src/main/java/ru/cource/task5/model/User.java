@@ -1,5 +1,6 @@
 package ru.cource.task5.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Schema(description = "Клиенты")
 public class User {
     @NonNull
     private Long id;

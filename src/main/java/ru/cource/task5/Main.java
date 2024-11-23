@@ -5,33 +5,25 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.sql.SQLException;
 
 /*
+task-5
 Создайте сервис, который хранит продукты клиентов.
 - Хранение продуктов необходимо организовать как в прошлом домашнем задании (пока не подключаем стартеры для работы с БД).
 - Продукт клиента: id, номер счета, баланс, тип продукта (счет, карта).
 - Сервис должен хранить продукты.
 - Сервис должен давать возможность: запросить все продукты по userId, запросить продукт по productId.
  */
+/*
+task-6
+Перенесите ваш сервис продуктов в один проект с платежным ядром в виде отдельного модуля
+- Добавить интеграцию платежного сервиса с сервисом продуктов через RestTemplate (или RestClient)
+- Добавить возможность запрашивать продукты у платежного сервиса
+(клиент кидает запрос в платежный сервис, платежный сервис запрашивает продукты клиента у сервиса продуктов и возвращает клиенту результат)
+- Добавить в процесс исполнения платежа выбор продукта, проверку его существования и достаточности средств на нем
+- Добавить возврат ошибок клиенту о проблемах как на стороне платежного сервиса, так и на стороне сервиса продуктов
+ */
 @SpringBootApplication(scanBasePackages = "ru.cource.task5")
 public class Main {
     public static void main(String[] args) throws SQLException {
         SpringApplication.run(Main.class,args);
-
-        // было для демонстрации работы сервисов, удалено после добавления контроллеров
-        // user
-//        System.out.println(ctx.getBean(UserService.class).getUser("Alex"));
-//        System.out.println(ctx.getBean(UserService.class).getAllUsers());
-//        ctx.getBean(UserService.class).createUser(new User(0L, "Dalex"));
-//        System.out.println(ctx.getBean(UserService.class).getAllUsers());
-//        ctx.getBean(UserService.class).deleteUser("Dalex");
-//        System.out.println(ctx.getBean(UserService.class).getAllUsers());
-
-        // product
-//        System.out.println(ctx.getBean(ProductService.class).getProduct("40817810000000000001"));
-//        System.out.println(ctx.getBean(ProductService.class).getProductsByUser(1L));
-//        System.out.println(ctx.getBean(ProductService.class).getAllProducts());
-//        ctx.getBean(ProductService.class).createProduct(new Product(0L, 1L, "40817810000000000999", BigDecimal.valueOf(999.99), ProductType.ACCOUNT));
-//        System.out.println(ctx.getBean(ProductService.class).getAllProducts());
-//        ctx.getBean(ProductService.class).deleteProduct("40817810000000000999");
-//        System.out.println(ctx.getBean(ProductService.class).getAllProducts());
     }
 }
