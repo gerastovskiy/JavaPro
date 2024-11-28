@@ -1,4 +1,4 @@
-package ru.cource.task5;
+package ru.cource.task56;
 
 import org.junit.jupiter.api.*;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -19,7 +19,7 @@ public class ProductTest {
     @Test
     @BeforeEach
     public void emptyTable() throws SQLException {
-        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task5");
+        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task56");
         ctx.getBean(ProductService.class).deleteAllProducts();
         ctx.getBean(UserService.class).deleteAllUsers();
         ctx.close();
@@ -29,7 +29,7 @@ public class ProductTest {
     public void createAndGetProductTest() throws SQLException {
         var userInsert = new User(0L, username);
 
-        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task5");
+        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task56");
         ctx.getBean(UserService.class).createUser(userInsert);
         var userSelect = ctx.getBean(UserService.class).getUser(username);
 
@@ -46,7 +46,7 @@ public class ProductTest {
     public void createAndDeleteProductTest() throws SQLException {
         var userInsert = new User(0L, username);
 
-        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task5");
+        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task56");
         ctx.getBean(UserService.class).createUser(userInsert);
         var userSelect = ctx.getBean(UserService.class).getUser(username);
         var productInsert = new Product(0L, userSelect.getId(), accountNumberFirst, BigDecimal.valueOf(999.99), ProductType.ACCOUNT);
@@ -63,7 +63,7 @@ public class ProductTest {
     public void getAllProductsTest() throws SQLException {
         var userInsert = new User(0L, username);
 
-        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task5");
+        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task56");
         ctx.getBean(UserService.class).createUser(userInsert);
         var userSelect = ctx.getBean(UserService.class).getUser(username);
         var productFirst = new Product(0L, userSelect.getId(), accountNumberFirst, BigDecimal.valueOf(999.99), ProductType.ACCOUNT);
@@ -82,7 +82,7 @@ public class ProductTest {
     public void getAllProductsbyUserTest() throws SQLException {
         var userInsert = new User(0L, username);
 
-        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task5");
+        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task56");
         ctx.getBean(UserService.class).createUser(userInsert);
         var userSelect = ctx.getBean(UserService.class).getUser(username);
         var productFirst = new Product(0L, userSelect.getId(), accountNumberFirst, BigDecimal.valueOf(999.99), ProductType.ACCOUNT);

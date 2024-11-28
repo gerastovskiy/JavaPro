@@ -1,4 +1,4 @@
-package ru.cource.task5;
+package ru.cource.task7;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import ru.cource.task56.model.User;
 import ru.cource.task56.service.ProductService;
 import ru.cource.task56.service.UserService;
+
 import java.sql.SQLException;
 import java.util.NoSuchElementException;
 
@@ -18,7 +19,7 @@ public class UsersTest {
     @Test
     @BeforeEach
     public void emptyTable() throws SQLException {
-        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task5");
+        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task7");
         ctx.getBean(ProductService.class).deleteAllProducts();
         ctx.getBean(UserService.class).deleteAllUsers();
         ctx.close();
@@ -28,7 +29,7 @@ public class UsersTest {
     public void createAndGetUserTest() throws SQLException {
         var userInsert = new User(0L, usernameFirst);
 
-        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task5");
+        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task7");
         ctx.getBean(UserService.class).createUser(userInsert);
         var userSelect = ctx.getBean(UserService.class).getUser(usernameFirst);
         ctx.close();
@@ -38,7 +39,7 @@ public class UsersTest {
 
     @Test
     public void create2IdenticalUsers() throws SQLException {
-        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task5");
+        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task7");
 
         NoSuchElementException thrown = Assertions
                 .assertThrows(NoSuchElementException.class, () -> {
@@ -54,7 +55,7 @@ public class UsersTest {
     public void createAndDeleteUserTest() throws SQLException {
         var userInsert = new User(0L, usernameFirst);
 
-        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task5");
+        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task7");
         ctx.getBean(UserService.class).createUser(userInsert);
         ctx.getBean(UserService.class).deleteUser(usernameFirst);
 
@@ -69,7 +70,7 @@ public class UsersTest {
         var userInsertFirst = new User(0L, usernameFirst);
         var userInsertSecond = new User(0L, usernameSecond);
 
-        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task5");
+        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext("ru.cource.task7");
         ctx.getBean(UserService.class).createUser(userInsertFirst);
         ctx.getBean(UserService.class).createUser(userInsertSecond);
         var users = ctx.getBean(UserService.class).getAllUsers();
