@@ -3,11 +3,11 @@ package ru.cource.task5;
 import org.junit.jupiter.api.*;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import ru.cource.task5.model.Product;
-import ru.cource.task5.model.ProductType;
-import ru.cource.task5.model.User;
-import ru.cource.task5.service.ProductService;
-import ru.cource.task5.service.UserService;
+import ru.cource.task56.model.Product;
+import ru.cource.task56.model.ProductType;
+import ru.cource.task56.model.User;
+import ru.cource.task56.service.ProductService;
+import ru.cource.task56.service.UserService;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 

@@ -5,9 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import ru.cource.task5.model.User;
-import ru.cource.task5.service.ProductService;
-import ru.cource.task5.service.UserService;
+import ru.cource.task56.model.User;
+import ru.cource.task56.service.ProductService;
+import ru.cource.task56.service.UserService;
 import java.sql.SQLException;
 import java.util.NoSuchElementException;
 
