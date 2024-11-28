@@ -5,7 +5,6 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 import ru.cource.task7.model.Product;
 import ru.cource.task7.model.ProductType;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import ru.cource.task7.model.Product;
 import ru.cource.task7.paymentCheckers.Checker;
 import ru.cource.task7.service.PaymentService;
-
 import java.math.BigDecimal;
 import java.util.List;
 

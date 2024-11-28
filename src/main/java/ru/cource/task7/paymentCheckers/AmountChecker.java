@@ -2,7 +2,6 @@ package ru.cource.task7.paymentCheckers;
 
 import org.springframework.stereotype.Component;
 import ru.cource.task7.model.Product;
-
 import java.math.BigDecimal;
 
 @Component

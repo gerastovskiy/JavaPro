@@ -3,7 +3,6 @@ package ru.cource.task7.model;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
 
 @Component

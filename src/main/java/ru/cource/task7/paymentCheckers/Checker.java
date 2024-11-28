@@ -1,7 +1,6 @@
 package ru.cource.task7.paymentCheckers;
 
 import ru.cource.task7.model.Product;
-
 import java.math.BigDecimal;
 
 public interface Checker {

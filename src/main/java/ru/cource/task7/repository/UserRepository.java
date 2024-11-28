@@ -4,7 +4,6 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 import ru.cource.task7.model.User;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

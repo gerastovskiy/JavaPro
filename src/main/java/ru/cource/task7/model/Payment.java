@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import lombok.*;
 import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
 
 @Component

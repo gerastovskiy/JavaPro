@@ -1,7 +1,6 @@
 package ru.cource.task7.service;
 
 import ru.cource.task7.model.Product;
-
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
