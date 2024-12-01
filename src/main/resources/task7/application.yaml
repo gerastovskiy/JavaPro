@@ -1,8 +1,22 @@
 spring:
-  username: user
-  password: pass
-  url: jdbc:h2:./src/main/resources/task7/h2
-  driver-class-name: org.h2.Driver
+  datasource:
+    username: user
+    password: pass
+    url: jdbc:h2:./src/main/resources/task7/h2
+    driverClassName: org.h2.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        enable_lazy_load_no_trans: false
+        order_inserts: true
+        jdbc.batch_size: 100
+        hbm2ddl:
+          auto: validate
+  flyway:
+    enabled: true
+    validate-on-migrate: false
 
 services-uri:
   get-all-products: http://localhost:8080/product/getByUser/

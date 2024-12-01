@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.cource.task7.model.User;
 import ru.cource.task7.service.UserService;
-
 import java.sql.SQLException;
 import java.util.List;
 

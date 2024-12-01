@@ -6,6 +6,7 @@ import ru.cource.task7.model.User;
 import ru.cource.task7.repository.UserRepository;
 import ru.cource.task7.service.UserService;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,31 +20,33 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(User user) throws SQLException {
-        userRepository.createUser(user);
+        userRepository.save(user);
     }
 
     @Override
     public void deleteUser(String username) throws SQLException{
-        userRepository.deleteUser(username);
+        userRepository.deleteByUsername(username);
     }
 
     @Override
     public void deleteAllUsers() throws SQLException {
-        userRepository.deleteAllUsers();
+        userRepository.deleteAll();
     }
 
     @Override
     public User getUser(String username) throws SQLException{
-        return userRepository.getUser(username);
+        return userRepository.findByUsername(username).get();
     }
 
     @Override
     public User getUser(Long id) throws SQLException{
-        return userRepository.getUser(id);
+        return userRepository.findById(id).get();
     }
 
     @Override
     public List<User> getAllUsers() throws SQLException{
-        return userRepository.getAllUsers();
+        var list = new ArrayList<User>();
+        userRepository.findAll().forEach(list::add);
+        return list;
     }
 }

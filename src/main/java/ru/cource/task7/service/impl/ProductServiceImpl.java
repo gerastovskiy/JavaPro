@@ -7,6 +7,7 @@ import ru.cource.task7.repository.ProductRepository;
 import ru.cource.task7.service.ProductService;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,48 +21,50 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void createProduct(Product product) throws SQLException {
-        productRepository.createProduct(product);
+        productRepository.save(product);
     }
 
     @Override
     public void deleteProduct(String account_number) throws SQLException{
-        productRepository.deleteProduct(account_number);
+        productRepository.deleteByAccountNumber(account_number);
     }
 
     @Override
     public void deleteAllProducts() throws SQLException {
-        productRepository.deleteAllProducts();
+        productRepository.deleteAll();
     }
 
     @Override
     public void debitProduct(Product product, BigDecimal amount) throws SQLException {
         product.setAccountBalance(product.getAccountBalance().subtract(amount));
-        productRepository.updateProduct(product);
+        productRepository.save(product);
     }
 
     @Override
     public void creditProduct(Product product, BigDecimal amount) throws SQLException {
         product.setAccountBalance(product.getAccountBalance().add(amount));
-        productRepository.updateProduct(product);
+        productRepository.save(product);
     }
 
     @Override
     public Product getProduct(String account_number) throws SQLException{
-        return productRepository.getProduct(account_number);
+        return productRepository.findByAccountNumber(account_number).get();
     }
 
     @Override
     public List<Product> getAllProducts() throws SQLException{
-        return productRepository.getAllProducts();
+        var list = new ArrayList<Product>();
+        productRepository.findAll().forEach(list::add);
+        return list;
     }
 
     @Override
     public Product getProduct(Long id) throws SQLException {
-        return productRepository.getProduct(id);
+        return productRepository.findById(id).get();
     }
 
     @Override
     public List<Product> getProductsByUser(Long id) throws SQLException {
-        return productRepository.getProductsByUser(id);
+        return productRepository.findByUserId(id);
     }
 }
