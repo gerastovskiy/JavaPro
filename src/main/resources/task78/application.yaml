@@ -18,8 +18,21 @@ spring:
     enabled: true
     validate-on-migrate: false
 
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace
+        stat: debug
+        orm:
+          jdbc:
+            bind: trace
+
 services-uri:
   get-all-products: http://localhost:8080/product/getByUser/
   get-product-by-id: http://localhost:8080/product/getById/
   debit-product: http://localhost:8080/product/debit
   credit-product: http://localhost:8080/product/credit
+  get-payment-product-by-id: http://localhost:8080/payment/getProduct
+  debit-payment: http://localhost:8080/payment/debit
+  credit-payment: http://localhost:8080/payment/credit
