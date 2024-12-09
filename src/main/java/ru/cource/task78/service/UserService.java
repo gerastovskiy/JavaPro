@@ -1,6 +1,6 @@
-package ru.cource.task7.service;
+package ru.cource.task78.service;
 
-import ru.cource.task7.model.User;
+import ru.cource.task78.model.User;
 import java.sql.SQLException;
 import java.util.List;
 

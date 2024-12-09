@@ -1,8 +1,8 @@
-package ru.cource.task7.repository;
+package ru.cource.task78.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import ru.cource.task7.model.Product;
+import ru.cource.task78.model.Product;
 import java.util.List;
 import java.util.Optional;
 

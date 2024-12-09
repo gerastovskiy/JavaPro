@@ -1,10 +1,10 @@
-package ru.cource.task7.service.impl;
+package ru.cource.task78.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.cource.task7.model.User;
-import ru.cource.task7.repository.UserRepository;
-import ru.cource.task7.service.UserService;
+import ru.cource.task78.model.User;
+import ru.cource.task78.repository.UserRepository;
+import ru.cource.task78.service.UserService;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

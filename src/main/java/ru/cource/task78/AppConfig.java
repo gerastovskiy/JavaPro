@@ -1,4 +1,4 @@
-package ru.cource.task7;
+package ru.cource.task78;
 
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;

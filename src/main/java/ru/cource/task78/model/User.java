@@ -1,4 +1,4 @@
-package ru.cource.task7.model;
+package ru.cource.task78.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;

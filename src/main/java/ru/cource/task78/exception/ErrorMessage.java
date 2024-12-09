@@ -1,4 +1,4 @@
-package ru.cource.task7.exception;
+package ru.cource.task78.exception;
 
 import lombok.Getter;
 import java.sql.Timestamp;

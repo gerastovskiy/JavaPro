@@ -1,11 +1,11 @@
-package ru.cource.task7.controller;
+package ru.cource.task78.controller;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.cource.task7.model.User;
-import ru.cource.task7.service.UserService;
+import ru.cource.task78.model.User;
+import ru.cource.task78.service.UserService;
 import java.sql.SQLException;
 import java.util.List;
 

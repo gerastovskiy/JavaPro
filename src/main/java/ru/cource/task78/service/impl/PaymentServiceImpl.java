@@ -1,9 +1,9 @@
-package ru.cource.task7.service.impl;
+package ru.cource.task78.service.impl;
 
 import org.springframework.stereotype.Service;
-import ru.cource.task7.model.Product;
-import ru.cource.task7.paymentCheckers.Checker;
-import ru.cource.task7.service.PaymentService;
+import ru.cource.task78.model.Product;
+import ru.cource.task78.paymentCheckers.Checker;
+import ru.cource.task78.service.PaymentService;
 import java.math.BigDecimal;
 import java.util.List;
 

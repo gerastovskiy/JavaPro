@@ -1,4 +1,4 @@
-package ru.cource.task7.controller;
+package ru.cource.task78.controller;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,10 +11,10 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClient;
-import ru.cource.task7.exception.ErrorMessage;
-import ru.cource.task7.model.Payment;
-import ru.cource.task7.model.Product;
-import ru.cource.task7.service.PaymentService;
+import ru.cource.task78.exception.ErrorMessage;
+import ru.cource.task78.model.Payment;
+import ru.cource.task78.model.Product;
+import ru.cource.task78.service.PaymentService;
 
 import java.util.List;
 

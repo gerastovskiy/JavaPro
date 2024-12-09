@@ -1,10 +1,10 @@
-package ru.cource.task7.service.impl;
+package ru.cource.task78.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.cource.task7.model.Product;
-import ru.cource.task7.repository.ProductRepository;
-import ru.cource.task7.service.ProductService;
+import ru.cource.task78.model.Product;
+import ru.cource.task78.repository.ProductRepository;
+import ru.cource.task78.service.ProductService;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package ru.cource.task7.exception;
+package ru.cource.task78.exception;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.HttpStatus;

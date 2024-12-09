@@ -1,11 +1,11 @@
-package ru.cource.task7.controller;
+package ru.cource.task78.controller;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.cource.task7.model.Product;
-import ru.cource.task7.service.ProductService;
+import ru.cource.task78.model.Product;
+import ru.cource.task78.service.ProductService;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
