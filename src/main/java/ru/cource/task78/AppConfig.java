@@ -18,7 +18,7 @@ public class AppConfig {
     public static PropertySourcesPlaceholderConfigurer properties(){
         PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
         YamlPropertiesFactoryBean yamlPropertiesFactoryBean = new YamlPropertiesFactoryBean();
-        yamlPropertiesFactoryBean.setResources(new ClassPathResource("task7/application.yaml"));
+        yamlPropertiesFactoryBean.setResources(new ClassPathResource("task78/application.yaml"));
         configurer.setProperties(yamlPropertiesFactoryBean.getObject());
 
         return configurer;
